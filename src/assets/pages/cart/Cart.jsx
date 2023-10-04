@@ -3,13 +3,14 @@ import { products } from "../../../product";
 import CartProduct from "./CartProduct";
 import { shopContext } from "../../../context/shopContext";
 import { AiOutlineShopping } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cart() {
   const { cartItems, getTotalAmount } = useContext(shopContext);
 
   const totalAmount = getTotalAmount();
   const [moving, isMoving] = useState(false);
+  const navigate = useNavigate();
 
   const mouseOver = () => {
     isMoving(true);
@@ -39,7 +40,10 @@ function Cart() {
             <div className="flex flex-col">
               <p className="text-orange-500">
                 ${totalAmount}{" "}
-                <span className="cursor-pointer border p-2 bg-orange-500 text-white rounded-lg">
+                <span
+                  className="cursor-pointer border p-2 bg-orange-500 text-white rounded-lg"
+                  onClick={() => navigate("/")}
+                >
                   Checkout
                 </span>
               </p>
